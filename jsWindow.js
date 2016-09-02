@@ -178,8 +178,14 @@ jsWindow.windowGroup = function (container, additionalGroupSettings) {
         if ((win) && (objDiv)) {
             var cont_cont = win.children(".window-content-container");
             cont_cont.children(".window-content").append(text_content);
-            objDiv.scrollTop = objDiv.scrollHeight;
-            //console.log(win);
+            //cont_cont.children(".window-content").scrollIntoView();
+            var tempid = "wincon"+win_id;
+            var temp = document.getElementById(tempid);
+            temp.scrollTop = temp.scrollHeight;
+            //console.log(temp.scrollHeight);
+            //console.log(cont_cont.children(".window-content").children('scrollHeight'));
+            //objDiv.scrollTop = 1111;
+            //console.log(objDiv.scrollTop);
             //console.log(objDiv.scrollTop);
             //console.log(objDiv.scrollHeight);
         }
@@ -276,7 +282,7 @@ jsWindow.windowGroup = function (container, additionalGroupSettings) {
                  "   </div>                                          \n" +
                  "                                                   \n" +
                  "   <div class='window-content-container'>          \n" +
-                 "     <div class='window-content'>                  \n" +
+                 "     <div id='wincon{id}' class='window-content'>\n" +
                  "       {content}                                   \n" +
                  "     </div>                                        \n" +
                  "   </div>                                          \n" +
