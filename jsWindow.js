@@ -177,17 +177,12 @@ jsWindow.windowGroup = function (container, additionalGroupSettings) {
         var objDiv = document.getElementById(win_id);
         if ((win) && (objDiv)) {
             var cont_cont = win.children(".window-content-container");
+            text_content = "<p>"+text_content+"</p>";
             cont_cont.children(".window-content").append(text_content);
-            //cont_cont.children(".window-content").scrollIntoView();
+
             var tempid = "wincon"+win_id;
             var temp = document.getElementById(tempid);
             temp.scrollTop = temp.scrollHeight;
-            //console.log(temp.scrollHeight);
-            //console.log(cont_cont.children(".window-content").children('scrollHeight'));
-            //objDiv.scrollTop = 1111;
-            //console.log(objDiv.scrollTop);
-            //console.log(objDiv.scrollTop);
-            //console.log(objDiv.scrollHeight);
         }
     };
     this.get_location = function(win_id) {
@@ -213,6 +208,11 @@ jsWindow.windowGroup = function (container, additionalGroupSettings) {
         } else {
             windows.splice(windows.indexOf(win_id), 1);
             $("#"+ win_id).remove();
+
+            var item_index = WindowId.indexOf(win_id); 
+            if (item_index >= 0) { 
+                WindowId.splice(item_index, 1); 
+            }
         }
     };
 
@@ -282,7 +282,7 @@ jsWindow.windowGroup = function (container, additionalGroupSettings) {
                  "   </div>                                          \n" +
                  "                                                   \n" +
                  "   <div class='window-content-container'>          \n" +
-                 "     <div id='wincon{id}' class='window-content'>\n" +
+                 "     <div id='wincon{id}' style='font-family: Courier;font-size: 11px;' class='window-content'>\n" +
                  "       {content}                                   \n" +
                  "     </div>                                        \n" +
                  "   </div>                                          \n" +

@@ -7,36 +7,40 @@ var wingroup = new jsWindow.windowGroup($('#windows_div'), {
     keep_windows_on_page: { top: true, bottom: true, left: true, right: true }
 });
 
-var text_content = "<p>12121212111111111111111111111111111111111111111111111,1212121211111111111111111111111</p>"+
-                   "<p>1111111111111111111111,12121212111111111111111111111111111111111111111111111,12121212111111111111</p>"+
-                   "<p>111111111111111111111111111111111</p>"+
-                   "<p>12121212111111111111111111111111111111111111111111111,12121212111111111111111111111111111111111111111111111,</p>"+
-                   "<p>12121212111111111111111111111111111111111111111111111,12121212111111111111111111111111111111111111111111111</p>"
-
-var window_ID;
+var text_content = ""
+var WindowId = [];
+var increment = 20;
+var win_top = 100;
+var win_left = 200;
 
 $(document).ready(function() {
+    /*
     $("#updateme").click( function() {
-        if(window_ID) {
+        if(WindowId) {
             new_line = "<p>abcdefghijklmn</p>"
-            wingroup.update_text(window_ID,new_line);
+            wingroup.update_text(WindowId,new_line);
         }
     });
-
+    */
     $("#showme").click( function() {
-        window_ID = wingroup.appendWindow({
+        var temp_id = wingroup.appendWindow({
             theme: "mac",
-            title: "Theme: <b>mac</b>",
+            title: "Log: <b>BB-VM</b>",
             content: text_content,
-            top:100, left:200, width:500, height:300
+            top:win_top, left:win_left, width:500, height:300
         });
+        win_top += increment;
+        win_left += increment;
+        WindowId.push(temp_id);
     });
-/*
+
     setInterval(function() {
-        var randomnumber = Math.floor(Math.random() * 100);
-        $('#show').text('I am getting refreshed every 3 seconds..! Random Number ==> '+ randomnumber);
-    }, 3000);
-*/
+        WindowId.forEach(function(my_win_id) {
+            var now = new Date();
+            var new_line = "abcdefghijklmndfdfdfdfdfd  "+now.toISOString();
+            wingroup.update_text(my_win_id,new_line);
+        });
+    }, 1000);
 });
 
 
