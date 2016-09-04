@@ -29,11 +29,24 @@ $(document).ready(function() {
             content: text_content,
             top:win_top, left:win_left, width:500, height:300
         });
+
         win_top += increment;
         win_left += increment;
         WindowId.push(temp_id);
+        if (win_top == 300) {
+            win_top = 100;
+        }
     });
-
+    $("#closeme").click( function() {
+        temp_array = WindowId;
+        WindowId = [];
+        win_top = 100;
+        win_left = 200;
+        temp_array.forEach(function(my_win_id) {
+            wingroup.remove_window(my_win_id);
+        });
+        //WindowId = [];
+    });
     setInterval(function() {
         WindowId.forEach(function(my_win_id) {
             var now = new Date();
